@@ -1,15 +1,16 @@
 
 // import Basico from './components/Basico';
 // import Contador from './components/Contador';
-import RegistrarFormulario from './components/RegistrarFormulario';
+import Contador from './components/Contador';
+// import RegistrarFormulario from './components/RegistrarFormulario';
 import "./inicio.css";
 const Inicio = () => {
 
   return (
     <>
-    {/* <Basico/>
-    <Contador/> */}
-    <RegistrarFormulario/>
+    {/* <Basico/> */}
+    <Contador/>
+    {/* <RegistrarFormulario/> */}
     </>
     )
 }

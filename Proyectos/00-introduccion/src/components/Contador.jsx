@@ -11,7 +11,7 @@ const Contador = () => {
   
   // funciones 
     function handleIncrementCounter(value){
-        setCounter((prev)=> prev+value);
+        setCounter((prev) => prev + parseInt(value, 10) ?? 0);
     }
 
     function handleDecrementCounter(){
@@ -28,11 +28,10 @@ const Contador = () => {
     <>
         <h1>Ejemplo básico de contador</h1>
         <h2>{counter}</h2>
-        <input type="number" value={value} onChange={setValue}/>
-        <button onClick={()=>handleIncrementCounter}>Incrementar</button>
+        <input type="number" value={value} onChange={(e) => setValue(e.target.value)}/>
+        <button onClick={()=>handleIncrementCounter(value)}>Incrementar</button>
         <button onClick={handleDecrementCounter}>Decrementar</button>
     </>
-
   )
 }
 
