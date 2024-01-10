@@ -7,7 +7,9 @@ const Buscador = () => {
   const [searchItem, setSearchItem] = useState("");
 
   function handleBuscar(searchItem) {
+
     setSearchItem(() => searchItem);
+    
     setFilterdItems(inicialState.filter((fruta) => fruta.includes(searchItem)));
     console.log(searchItem);
   }

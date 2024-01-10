@@ -35,6 +35,7 @@ const Contador = () => {
       />
       <button onClick={() => handleIncrementCounter(value)}>Incrementar</button>
       <button onClick={() => handleDecrementCounter(value)}>Decrementar</button>
+      
     </>
   );
 };
