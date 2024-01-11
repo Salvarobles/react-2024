@@ -20,6 +20,7 @@ const initialState = [
 
 const TodoListBasic = () => {
   const [taks, setTaks] = useState(initialState);
+  
   function handleToggleTask(taskId) {
     const updateTask = taks.map((task) =>
       task.id === taskId ? { ...task, completed: !task.completed } : task

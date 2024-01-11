@@ -1,3 +1,3 @@
 
-const a = Date.now().toString(36); 
-const b = Math.random().toString(36).substring(22);
+
+export const generateId = Math.random().toString(36).substr(2);
