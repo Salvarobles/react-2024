@@ -1,11 +1,20 @@
 
-import TodoListBasicTailWindCss from "./components/useState/TodoListBasicTailWindCss";
+
+// import ComponenteProps from "./components/props/ComponenteProps";
+// import PadreHijoNieto from "./components/props/PadreHijoNieto";
+// import TodoListBasicTailWindCss from "./components/useState/TodoListBasicTailWindCss";
+// import ResizeListener from "./components/useEffect/ResizeListener";
+// import UseEffectBasic from "./components/useEffect/UseEffectBasic";
 import "./inicio.css";
 
 const Inicio = () => {
   return (
     <>
-      <TodoListBasicTailWindCss/>
+      {/* <TodoListBasicTailWindCss/> */}
+      {/* <ComponenteProps/> */}
+      {/* <PadreHijoNieto/> */}
+      {/* <UseEffectBasic/> */}
+      {/* <ResizeListener/> */}
     </>
   );
 };
