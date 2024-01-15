@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { generateId } from "../helpers/generateId";
+import { generateId } from "../../helpers/generateId";
 
 const initialState = [
   {
@@ -20,7 +20,7 @@ const initialState = [
 ];
 
 const TodoListBasicTailWindCss = () => {
-  const [taks, setTaks] = useState(initialState);
+  const [tasks, setTaks] = useState(initialState);
   const [newTask, setNewTask] = useState("");
 
   //   function handleChangeTask(e) {
@@ -30,36 +30,39 @@ const TodoListBasicTailWindCss = () => {
   //   }
 
   function handleAddTask() {
-    if (newTask === ""){
-      alert("Please should write in the input")
-      return false;
+    if (newTask.trim()) {
+      const newId = generateId();
+      const objTask = {
+        id: newId,
+        title: newTask.trim(),
+        completed: false,
+      };
+      // console.log(objTask);
+      setTaks(() => [...tasks, objTask]);
+      // console.log(setTaks);
+      setNewTask("")
     }
-
-    const objTask = {
-      id: generateId,
-      title: newTask,
-      completed: false,
-    }
-    // console.log(objTask);
-    setTaks(()=> ([
-      ...taks,
-      objTask]
-    ))
-    // console.log(setTaks);
+    
   }
 
   function handleCompleted(taskId) {
-    const updateTask = taks.map((task) =>
-    task.id === taskId ? { ...task, completed: !task.completed } : task
-  );
+    const updateTask = tasks.map((task) =>
+      task.id === taskId ? { ...task, completed: !task.completed } : task
+    );
 
-  setTaks(updateTask);
+    setTaks(updateTask);
   }
 
   function handleremoveTask(taskId) {
-    const updatedTasks = taks.filter((task) => task.id !== taskId);
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTaks(updatedTasks);
   }
+
+  const handlekeyEnter = (e) => {
+    if (e.key === "Enter"){
+      handleAddTask()
+    }
+  } 
 
   return (
     <>
@@ -72,6 +75,7 @@ const TodoListBasicTailWindCss = () => {
             className="flex-1 mr-2 p-2 border rounded-md focus:outline-none focus:border-blue-600"
             onChange={(e) => setNewTask(e.target.value)}
             value={newTask}
+            onKeyDown={handlekeyEnter}
           />
           <button
             className=" bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800"
@@ -81,7 +85,7 @@ const TodoListBasicTailWindCss = () => {
           </button>
         </div>
         <ul>
-          {taks.map((task) => (
+          {tasks.map((task) => (
             <li key={task.id} className="flex items-center mb2">
               <input
                 type="checkbox"
@@ -89,9 +93,11 @@ const TodoListBasicTailWindCss = () => {
                 className="mr-4"
                 onChange={() => handleCompleted(task.id)}
               />
-              <span style={{
+              <span
+                style={{
                   textDecoration: task.completed ? "line-through" : "none",
-                }}>
+                }}
+              >
                 {task.title}
               </span>
               <button
