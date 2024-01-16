@@ -5,6 +5,7 @@
 // import TodoListBasicTailWindCss from "./components/useState/TodoListBasicTailWindCss";
 // import ResizeListener from "./components/useEffect/ResizeListener";
 // import UseEffectBasic from "./components/useEffect/UseEffectBasic";
+import GitHubUserCard from "./components/useEffect/GitHubUserCard/GitHubUserCard";
 import "./inicio.css";
 
 const Inicio = () => {
@@ -15,6 +16,7 @@ const Inicio = () => {
       {/* <PadreHijoNieto/> */}
       {/* <UseEffectBasic/> */}
       {/* <ResizeListener/> */}
+      <GitHubUserCard/>
     </>
   );
 };
