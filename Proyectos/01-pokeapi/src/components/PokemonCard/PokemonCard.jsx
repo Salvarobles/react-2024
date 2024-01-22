@@ -148,8 +148,7 @@ const PokemonCard = (props) => {
         </div>
       ) : (
         <div className="flex flex-wrap gap-8 justify-center mt-8">
-          {filterPokemons &&
-            filterPokemons.map((pokemon) => {
+          { filterPokemons.map((pokemon) => {
               const tipo = pokemon.types[0];
               const estilos = obtenerEstiloPokemon(tipo);
 

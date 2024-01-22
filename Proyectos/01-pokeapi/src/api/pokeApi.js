@@ -1,4 +1,4 @@
-const URL = "https://pokeapi.co/api/v2/pokemon/";
+const URL = import.meta.env.VITE_API_URL;
 // const limitPerPage = 20;
 const totalPokemon = 100;
 
@@ -20,9 +20,11 @@ async function pokeApi() {
   const pokemonObj = [];
   const results = await getPokemonData();
   const promises = [];
+
   for (let pokemon of results) {
     promises.push(fetch(pokemon.url));
   }
+  
   const promisesPending = await Promise.all(promises);
 
   const data = await Promise.all(

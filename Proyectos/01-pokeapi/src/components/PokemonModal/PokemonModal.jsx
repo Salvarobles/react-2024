@@ -33,7 +33,7 @@ const PokemonModal = (props) => {
             className="rounded w-full h-full bg-gray-300 max-w-40"
           />
         </div>
-        <div className="mt-2">
+        <div className="mt-2 text-center">
           <h3>Habilidades {pokemon.abilities.join(", ")}</h3>
           <h3>Movimientos: {pokemon.moves.join(", ")}</h3>
           <h3>Peso y altura: {(pokemon.weight / 10).toFixed(2).replace(/\.?0+$/, '')}kg  {(pokemon.height / 10).toFixed(2).replace(/\.?0+$/, '')}m</h3>
