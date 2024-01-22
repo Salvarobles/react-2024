@@ -1,7 +1,15 @@
+import { useState } from "react"
+import PokemonCard from "../../components/PokemonCard/PokemonCard"
+import SearchBar from "../../components/SearchBar/SearchBar"
 
 const Home = () => {
+  const [search, setSearch] = useState("");
+
   return (
-    <div>Home</div>
+    <>
+      <SearchBar setSearch={setSearch}/>
+      <PokemonCard search={search}/>
+    </>
   )
 }
 

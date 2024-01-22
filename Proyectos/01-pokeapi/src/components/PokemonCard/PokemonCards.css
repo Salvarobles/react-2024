@@ -1,0 +1,16 @@
+@keyframes circleAnimation {
+    0% {
+      clip-path: circle(0% at 50% 50%);
+    }
+    100% {
+      clip-path: circle(50% at 50% 50%);
+    }
+  }
+  
+  .animate-circle {
+    animation: circleAnimation 3s ease-in-out infinite alternate;
+  }
+  
+  .spinner {
+    margin-left: 29vw;
+  }
