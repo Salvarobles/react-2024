@@ -1,12 +1,27 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./pages/Error";
+import RootMoviesLayout from "./pages/RootMoviesLayout";
+import Home from "./pages/Home";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
+
 
 function App() {
-
-  return (
-    <>
-    <h1 className=' text-5xl'>Estoy spinner</h1>
-        
-    </>
-  )
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootMoviesLayout />,
+      errorElement: <Error />,
+      // loader: () => {
+      //   //fetch de datos.
+      // },
+      children: [
+        { index: true , element: <Home /> },
+        // { path: "usuarios", element: <Usuario /> },
+        { path: "peliculas/:idPelicula", element: <MovieDetailsPage /> },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
