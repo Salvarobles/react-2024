@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
-export function useDataApi(apiEndPoint) {
+export default function useDataApi(apiEndPoint) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,14 +12,13 @@ export function useDataApi(apiEndPoint) {
         const response = await fetch(apiEndPoint);
         if (!response.ok) throw new Error("Error fetching data");
         const result = await response.json();
-        setData(result);
-      } catch (e) {
-        setError(e.message || e.status);
+        setData(result); //<-- la tengo que guardar en un estado.
+      } catch (error) {
+        setError(error.message || error.status);
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [apiEndPoint]);
 
