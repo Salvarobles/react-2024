@@ -6,6 +6,7 @@ import EjemploUseRef from "./components/EjemploUseRef";
 import EjemploUseRef2 from "./components/EjemploUseRef2";
 import EjemploUseRef3 from "./components/EjemploUseRef3";
 import EjemploUseContext from "./components/EjemploUseContext";
+import TodoProvider from "./components/context/TodoProvider";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,14 +30,16 @@ function App() {
       <hr />
       <h2>Uso de useRef</h2>
       <h2>Uso de EjemploUseRef</h2>
-      <EjemploUseRef/>
+      <EjemploUseRef />
       <hr />
       <h2>Uso de EjemploUseRef2</h2>
-      <EjemploUseRef2/>
+      <EjemploUseRef2 />
       <h2>Uso de Contador</h2>
-      <EjemploUseRef3/>
+      <EjemploUseRef3 />
       <h2>Uso de Use Context</h2>
-      <EjemploUseContext/>
+      <TodoProvider>
+        <EjemploUseContext />
+      </TodoProvider>
     </>
   );
 }

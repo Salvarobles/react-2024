@@ -16,7 +16,11 @@ const initialState = [
 const TodoProvider = ({ children }) => {
   const [tareas, setTareas] = useState(initialState);
 
-  function eliminarTarea() {}
+  function eliminarTarea(id) {
+    const nuevasTareas = tareas.filter((tarea) => tarea.id !== id);
+    setTareas(nuevasTareas);
+  }
+  
   return (
     <TodoContext.Provider value={{ tareas, setTareas, eliminarTarea }}>
       <>{children}</>
