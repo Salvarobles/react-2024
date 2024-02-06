@@ -7,6 +7,7 @@ import EjemploUseRef2 from "./components/EjemploUseRef2";
 import EjemploUseRef3 from "./components/EjemploUseRef3";
 import EjemploUseContext from "./components/EjemploUseContext";
 import TodoProvider from "./components/context/TodoProvider";
+import AppContext from "./components/ejemploContext/AppContext";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,12 +22,6 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
       <hr />
       <h2>Uso de useRef</h2>
       <h2>Uso de EjemploUseRef</h2>
@@ -40,6 +35,8 @@ function App() {
       <TodoProvider>
         <EjemploUseContext />
       </TodoProvider>
+      <hr />
+      <AppContext/>
     </>
   );
 }
