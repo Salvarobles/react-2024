@@ -36,7 +36,10 @@ function App() {
     }
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+  <AuthProvider>
+    <RouterProvider router={router} />;
+  </AuthProvider>)
 }
 
 export default App;

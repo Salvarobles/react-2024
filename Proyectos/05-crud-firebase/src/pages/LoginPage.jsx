@@ -1,4 +1,18 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signInWithGoolge } from "../firebase/productosApi";
+
 const LoginPage = () => {
+  const [error, setError] = useState(null);
+  // const [signInFirebase, setSignInFirebase] = useState(null);
+  const navigate = useNavigate();
+  // estado grobal
+
+  const handleSingIn = async (e) => {
+    e.preventDefault();
+    // llamar a una funcion de productosapi para gestionar el inicio de sesion con google
+    await signInWithGoolge(signInFirebase, setError, navigate);
+  };
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-200 to-gray-500">
       <div className="flex items-center justify-between mx-10">
@@ -26,8 +40,16 @@ const LoginPage = () => {
               </h2>
             </div>
             <form>
+              {error && (
+                <div className="rounded-md bg-red-100 p-4">
+                  <h3 className="text-sm font-medium text-red-700">{error}</h3>
+                </div>
+              )}
               <div className="rounded-md shadow-sm">
-                <button className="relative w-full flex justify-center py-2 px-4 border text-sm font-medium rounded-md text-white bg-indigo-600 hover:gb-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button
+                  onClick={handleSingIn}
+                  className="relative w-full flex justify-center py-2 px-4 border text-sm font-medium rounded-md text-white bg-indigo-600 hover:gb-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
                   Iniciar Sesión con Google
                 </button>
               </div>
