@@ -82,12 +82,12 @@ const ShowProductForm = ({ updateProduct }) => {
                   </td>
 
                   <td className="flex justify-center gap-2 py-2 px-4 ">
-                    <Link>
+                    <Link to={`productos/${producto.id}`}>
                       <button className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-2 rounded shadow hover:shadow-slate-500">
                         ✏
                       </button>
                     </Link>
-
+ 
                     <button
                       className="bg-red-500 hover:bg-red-800 text-white font-bold py-1 px-2 rounded shadow hover:shadow-slate-500"
                       onClick={() => handleDelete(producto.id)}

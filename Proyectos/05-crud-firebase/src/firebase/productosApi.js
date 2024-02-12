@@ -1,8 +1,7 @@
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
 const productosCollection = collection(db, "crud-productos");
-
 // --------------- CARGAR PRODUCTOS ---------------
 
 export const getProductos = async () => {
@@ -16,7 +15,18 @@ export const getProductos = async () => {
   }
 };
 
-// --------------- CARGAR UN PRODUCTOS ---------------
+// --------------- CARGAR UN PRODUCTO ---------------
+
+export const loadProduct = async (idProducto) => {
+  try {
+    const productDocRef =  doc(productosCollection, idProducto);
+    const productDoc = await getDoc(productDocRef);
+    return(productDoc._document.data.value.mapValue);
+  } catch (error) {
+    console.log("Error getting product with id is:", idProducto, error);
+    throw error;
+  }
+}
 
 // --------------- CREAR ENTRADA DE PRODUCTOS ---------------
 export const addProducto = async (productoData) => {
