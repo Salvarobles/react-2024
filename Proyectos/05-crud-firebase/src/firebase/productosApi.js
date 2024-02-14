@@ -81,7 +81,7 @@ export const deleteProducto = async (id) => {
 
 // -------------------- VALIDAR LA ENTRADA DE GOOGLE ------------------
 
-export const signInWithGoolge = async (signInFirebase, setError, navigate) =>{
+export const signInWithGoolge = async (login, setError, navigate) =>{
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   try {
@@ -92,7 +92,7 @@ export const signInWithGoolge = async (signInFirebase, setError, navigate) =>{
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     // setear mi estado con el usuaario
-    signInFirebase(user);
+    login(user);
     navigate("/");
   } catch (error) {
     setError("error al iniciar con google", error)

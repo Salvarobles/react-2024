@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import RootPage from "./pages/RootPage";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Home from "./pages/Home";
+import {AuthProvider} from "./context/AuthProvider";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,13 +34,14 @@ function App() {
     {
       path: "/login",
       element: <LoginPage />,
-    }
+    },
   ]);
 
   return (
-  <AuthProvider>
-    <RouterProvider router={router} />;
-  </AuthProvider>)
+    <AuthProvider>
+      <RouterProvider router={router} />;
+    </AuthProvider>
+  );
 }
 
 export default App;

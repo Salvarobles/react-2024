@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithGoolge } from "../firebase/productosApi";
+import { useAuth } from "../context/AuthProvider";
 
 const LoginPage = () => {
+  const { login } = useAuth();
   const [error, setError] = useState(null);
   // const [signInFirebase, setSignInFirebase] = useState(null);
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const LoginPage = () => {
   const handleSingIn = async (e) => {
     e.preventDefault();
     // llamar a una funcion de productosapi para gestionar el inicio de sesion con google
-    await signInWithGoolge(signInFirebase, setError, navigate);
+    await signInWithGoolge(login, setError, navigate);
   };
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-200 to-gray-500">
