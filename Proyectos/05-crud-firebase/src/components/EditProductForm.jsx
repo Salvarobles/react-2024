@@ -84,6 +84,7 @@ const EditProductForm = ({ initialData }) => {
               className="mt-2 block w-full"
             />
           </label>
+          <img className="w-20 h-20 mx-auto mb-4" src={formData.url} alt="" />
           <div className="flex justify-between items-center">
             <button
               type="submit"

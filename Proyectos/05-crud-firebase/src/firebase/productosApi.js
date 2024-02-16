@@ -7,7 +7,7 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import {GoogleAuthProvider, browserSessionPersistence, getAuth, setPersistence, signInWithPopup} from "firebase/auth";
+import {GoogleAuthProvider, browserSessionPersistence, getAuth, setPersistence, signInWithPopup, signOut} from "firebase/auth";
 import { db } from "./firebase";
 
 const productosCollection = collection(db, "crud-productos");
@@ -96,5 +96,16 @@ export const signInWithGoolge = async (login, setError, navigate) =>{
     navigate("/");
   } catch (error) {
     setError("error al iniciar con google", error)
+  }
+}
+
+// ------------------------ CERRAR SESION EN GOOGLE ------------------
+export const cerrarSesion = async() => {
+  const auth = getAuth();
+  try {
+    await signOut(auth)
+    return true;
+  } catch {
+    console.log("Error al cerrar sesion con googles")
   }
 }

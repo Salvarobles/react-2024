@@ -1,17 +1,16 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../../context/AuthProvider';
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuthContext } from "../../context/useAuthContext";
 
-const ProtectedRoute = ({redirect}) => {
-    const { signInFirebase } = useAuth();
+const ProtectedRoute = ({ redirect }) => {
+  const { signInFirebase } = useAuthContext();
 
-    // cargamos el estado grobal
-    const isActive = !!signInFirebase;
-    if (!isActive) {
-        return <Navigate to={redirect} replace/>
-    }
+  // cargamos el estado grobal
+  const isActive = !!signInFirebase;
+  if (!isActive) {
+    return <Navigate to={redirect} replace />;
+  }
 
-    return <Outlet/>
-}
+  return <Outlet />;
+};
 
-
-export default ProtectedRoute
+export default ProtectedRoute;

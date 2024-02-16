@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithGoolge } from "../firebase/productosApi";
-import { useAuth } from "../context/AuthProvider";
+import {  useAuthContext } from "../context/useAuthContext";
 
 const LoginPage = () => {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
   const [error, setError] = useState(null);
   // const [signInFirebase, setSignInFirebase] = useState(null);
   const navigate = useNavigate();

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import { deleteProducto, getProductos } from "../firebase/productosApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ShowProductForm = ({ updateProduct }) => {
   const [loading, setLoading] = useState(false);
   const [productos, setProductos] = useState([]);
+  const [stockTotal, setStockTotal] = useState(0);
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     try {
@@ -33,6 +35,30 @@ const ShowProductForm = ({ updateProduct }) => {
     }
   };
 
+
+  const handlePay = (stock) => {
+
+    // navigate(`/payment/:${stock}`)
+    navigate("/payment", {state: {stock}})
+    
+
+    // const precio = stock*2;
+    // const precioIva = precio*1.21;
+
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Pagar",
+    //     text: `El precio es ${precio}€ y precio con IVA es: ${precioIva}€`,
+    //   });
+  };
+
+  const handleOrdenByStock = () => {  
+    // Create a new array with the sorted products
+    const sortedProductos = [...productos].sort((a, b) => b.stock - a.stock);
+    // Update the state with the sorted array
+    setProductos(sortedProductos);
+  };
+
   const fetchShowProducts = async () => {
     try {
       const productosData = await getProductos();
@@ -46,6 +72,9 @@ const ShowProductForm = ({ updateProduct }) => {
 
   useEffect(() => {
     fetchShowProducts();
+    setStockTotal(
+      productos.reduce((acu, producto) => (acu += parseInt(producto.stock)), 0)
+    );
   }, [updateProduct]);
 
   return (
@@ -61,7 +90,7 @@ const ShowProductForm = ({ updateProduct }) => {
                 <th className="py-2 px-4 border-b">ID</th>
                 <th className="py-2 px-4 border-b">Nombre del Producto</th>
                 <th className="py-2 px-4 border-b">Descripcion</th>
-                <th className="py-2 px-4 border-b">Stock</th>
+                <th onClick={handleOrdenByStock} className="py-2 px-4 border-b hover:cursor-pointer">Stock</th>
                 <th className="py-2 px-4 border-b">Imagen</th>
                 <th className="py-2 px-4 border-b">Acciones</th>
               </tr>
@@ -87,7 +116,7 @@ const ShowProductForm = ({ updateProduct }) => {
                         ✏
                       </button>
                     </Link>
- 
+
                     <button
                       className="bg-red-500 hover:bg-red-800 text-white font-bold py-1 px-2 rounded shadow hover:shadow-slate-500"
                       onClick={() => handleDelete(producto.id)}
@@ -97,6 +126,18 @@ const ShowProductForm = ({ updateProduct }) => {
                   </td>
                 </tr>
               ))}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td className="py-2 px-4 mx-4">{stockTotal}</td>
+                <td className="py-2 px-4 mx-4">
+                  <button onClick={()=>handlePay(stockTotal)} className="bg-pink-300 text-white font-bold py-1 px-2 rounded shadow hover:shadow-slate-500">
+                    Pagar
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </>
