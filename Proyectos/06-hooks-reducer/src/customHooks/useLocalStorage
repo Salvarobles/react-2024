@@ -1,0 +1,50 @@
+// crear un custom hooks llamado  localstroge  pasado por el parametro una clave y
+// algo inicial y que me permita mostrar el contenido de ese contenido de la clave almacenada en el localstrora y
+// guarda quealiquer contenido dentro de esa clave.
+// opnino la forma de almacenarla es a vuestra eleccion (AÑADIR LO QUE YA HAYA O SUBRESCRIBIRLA)
+
+import { useState } from "react";
+
+// const loadLocalStorage = (localstorage, initialState, clave) => {
+//   try {
+//     const item = localstorage.getItem(clave);
+//     return item ? JSON.parse(item) : initialState;
+//   } catch (error) {
+//     console.log(error);
+//     return initialState;
+//   }
+// };
+
+// const useLocalStorage = (clave) => {
+//   const [localstorage, setLocalstorage] = useState(loadLocalStorage());
+
+//   const setValue = (value) => {
+//     try {
+//       setLocalstorage(value);
+//       localStorage.setItem(clave, JSON.stringify(value));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   return [localstorage, setValue];
+// };
+
+// export default useLocalStorage;
+
+
+const useLocalStorage = (key, initialState) => {
+    const [storedValue, setStoredValue] = useState(() => {
+        const item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialState
+    });
+  
+    const setValue = (value) => {
+        setStoredValue(value);
+        window.localStorage.setItem(key, JSON.stringify(value));
+    }
+  
+    return [storedValue, setValue];
+  };
+  
+  export default useLocalStorage;
