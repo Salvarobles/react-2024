@@ -1,16 +1,28 @@
+
 const corsAnywhereURL = "https://cors.bridged.cc/";
 const originalURL = "https://api.preciodelaluz.org/v1/prices/all?zone=PCB";
 const proxiedURL = corsAnywhereURL + originalURL;
 
-export const getPriceLight = async () => {
+const getPriceLight = async () => {
   try {
-    const response = await fetch(proxiedURL);
+    const response = await fetch(proxiedURL, {
+      headers: {
+        'x-cors-api-key': 'temp_f8aa94d900ff748d1ca3ac36ce391b8e'
+      }
+    });
     const data = await response.json();
-    console.log(data);
+
+    // Convertir el objeto a una array de pares clave-valor
+    const entriesArray = Object.entries(data);
+
+    // Ordenar la array de pares clave-valor por el valor de "price"
+    const orderedArray = entriesArray.sort(([, a], [, b]) => a.price - b.price);
+
+    return orderedArray;
   } catch (error) {
     console.error("Error al fechear:", error.message);
     throw error;
   }
 };
 
-getPriceLight();
+export default getPriceLight;

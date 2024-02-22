@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { getValidateUsers } from "../api/usersApi";
 import { useAuthContext } from "../context/useAuthContext";
 import { useNavigate } from "react-router-dom";
-import { getPriceLight } from "../api/luzApi";
+
 
 const Login = () => {
 const [userForm, setUserForm] = useState({});
@@ -105,7 +104,5 @@ const [userForm, setUserForm] = useState({});
     </section>
   );
 };
-
-getPriceLight();
 
 export default Login;
