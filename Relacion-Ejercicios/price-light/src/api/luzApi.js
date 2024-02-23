@@ -25,4 +25,26 @@ const getPriceLight = async () => {
   }
 };
 
+export const getPriceById = async (id) => {
+  try {
+    const response = await fetch(proxiedURL, {
+      headers: {
+        'x-cors-api-key': 'temp_f8aa94d900ff748d1ca3ac36ce391b8e'
+      }
+    });
+    const data = await response.json();
+
+    if (data.hasOwnProperty(id)) {
+      return data[id];
+    } else {
+      console.error("No se encontró ningún objeto con el ID:", id);
+      return null; // O lanzar un error según tu lógica
+    }
+
+  } catch (error) {
+    console.error("Error al fechear:", error.message);
+    throw error;
+  }
+};
+
 export default getPriceLight;
