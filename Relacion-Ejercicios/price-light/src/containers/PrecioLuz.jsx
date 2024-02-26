@@ -20,8 +20,9 @@ const PrecioLuz = () => {
     try {
       getPriceLight().then((orderedArray) => {
         setPrices(orderedArray);
+        setLoading(false);
       });
-      setLoading(false);
+      
     } catch (error) {
       setLoading(true);
     }
@@ -34,9 +35,10 @@ const PrecioLuz = () => {
           Precios de luz {currentDate}
         </h2>
       </div>
+      
 
       {loading ? (
-        <Spinner />
+        <Spinner/>
       ) : (
         prices.map((price, index) => {
           let color;
@@ -49,8 +51,6 @@ const PrecioLuz = () => {
           } else {
             color = "orange"; // El resto en naranja
           }
-
-          console.log(price[0]);
 
           return (
             <div

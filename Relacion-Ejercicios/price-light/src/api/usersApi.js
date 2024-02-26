@@ -14,6 +14,22 @@ export const getUsers = async () => {
   }
 };
 
+export const getUser = async (email) => {
+  try {
+    const users = await getUsers();
+    const user = users.find((user) => user.email === email);
+
+    if (!user) {
+      throw new Error(`User with email ${email} not found`);
+    }
+
+    return user;
+  } catch (error) {
+    console.error("Error fetching user by email:", error.message);
+    throw error;
+  }
+};
+
 export const getValidateUsers = async () => {
     const users = [];
     try {

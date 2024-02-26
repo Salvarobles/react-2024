@@ -3,10 +3,11 @@ import RootPage from "./pages/RootPage";
 import ErrorElement from "./pages/ErrorElement";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Home from "./pages/Home";
-import PrecioLuz from "./containers/PrecioLuz";
 import CardPrecioLuz from "./pages/CardPrecioLuz";
 import Login from "./pages/Login";
 import { AuthProvider } from "./context/useAuthContext";
+import About from "./pages/About";
+import User from "./pages/User";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,6 +20,8 @@ function App() {
           element: <ProtectedRoute redirect="/login" />,
           children: [
             { index: true, element: <Home /> },
+            { path: "/user", element: <User /> },
+            { path: "/about", element: <About /> },
             { path: "/precioluz/:id", element: <CardPrecioLuz /> },
           ],
         },

@@ -5,18 +5,20 @@
  */
 
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../context/useAuthContext";
 
 const NavBar = () => {
+  const { logout } = useAuthContext();
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex items-center justify-center gap-5 text-center mb-6 bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-3xl font-black">
+        <div className="flex items-center justify-center gap-5 text-center mb-6 bg-gradient-to-r from-teal-500 via-blue-500 to-black-500 bg-clip-text text-transparent text-3xl font-black">
           <img
-            src="/src/assets/images/logo.svg"
+            src="../images/logoLight.png"
             alt=""
             className="h-20 w-20 rounded-full"
           />
-          Poke Api
+          Price Light
         </div>
         <div className="border border-gray-300 py-3 flex gap-1 shadow-xl rounded-md justify-center ">
           <Link to="/">
@@ -107,13 +109,18 @@ const NavBar = () => {
           <Link to="/user">
             <div className="group relative px-4 cursor-pointer">
               <div className="flex h-10 w-10 items-center justify-center rounded-full hover:text-blue-500">
-                <img src="/src/assets/images/user.svg" alt="user" />
+                <img src="../images/user.svg" alt="user" />
               </div>
               <span className="absolute -top-8 left-[50%] -translate-x-[50%] z-20 origin-left scale-0 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium shadow-md transition-all duration-300 ease-in-out group-hover:scale-100">
                 User
               </span>
             </div>
           </Link>
+          <button className="w-12" onClick={logout}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path d="M320 32c0-9.9-4.5-19.2-12.3-25.2S289.8-1.4 280.2 1l-179.9 45C79 51.3 64 70.5 64 92.5V448H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H96 288h32V480 32zM256 256c0 17.7-10.7 32-24 32s-24-14.3-24-32s10.7-32 24-32s24 14.3 24 32zm96-128h96V480c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H512V128c0-35.3-28.7-64-64-64H352v64z" />
+            </svg>
+          </button>
         </div>
       </div>
     </>
