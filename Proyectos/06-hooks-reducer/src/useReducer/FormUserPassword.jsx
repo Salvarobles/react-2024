@@ -4,6 +4,8 @@ const inicialState = {
   name: "",
   password: "",
 };
+
+
 const formReducer = (state, action) => {
   switch (action.type) {
     case "SET-NAME":
